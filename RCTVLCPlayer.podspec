@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/sophatvathana-slash/react-native-yz-vlcplayer", :tag => "v#{s.version}" }
   s.source_files  = "ios/**/*.{h,m}"
-
+  
+  s.dependency 'MobileVLCKit'
   s.dependency 'React'
 end
