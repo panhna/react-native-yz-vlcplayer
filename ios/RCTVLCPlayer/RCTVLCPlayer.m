@@ -1,8 +1,8 @@
-#import "React/RCTConvert.h"
+#import <React/RCTConvert.h>
 #import "RCTVLCPlayer.h"
-#import "React/RCTBridgeModule.h"
-#import "React/RCTEventDispatcher.h"
-#import "React/UIView+React.h"
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventDispatcher.h>
+#import <React/UIView+React.h>
 #import <MobileVLCKit/MobileVLCKit.h>
 #import <AVFoundation/AVFoundation.h>
 static NSString *const statusKeyPath = @"status";
