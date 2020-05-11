@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     s.static_framework = true
   end
   
-  s.dependency 'MobileVLCKit', '~>3.3.0'
+  s.dependency 'MobileVLCKit', :git => 'https://code.videolan.org/videolan/VLCKit.git'
   s.dependency 'React'
   s.default_subspec = "RCTVLCPlayer"
 end
