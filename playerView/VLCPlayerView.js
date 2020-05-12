@@ -165,7 +165,7 @@ export default class VLCPlayerView extends Component {
         )}
         {isError && (
           <View style={[styles.loading,{backgroundColor:'#000'}]}>
-            <Text style={{ color: 'red' }}>视频播放出错,请重新加载</Text>
+            <Text style={{ color: 'red' }}>Video playback error, please reload</Text>
             <TouchableOpacity
               activeOpacity={1}
               onPress={this._reload}
@@ -425,7 +425,7 @@ export default class VLCPlayerView extends Component {
               this.vlcPlayer.resume && this.vlcPlayer.resume(false);
               console.log(this.props.uri + ':   onEnded');
             } else {
-              console.log('片头：' + this.props.uri + ':   onEnded');
+              console.log('Opening: ' + this.props.uri + ':   onEnded');
             }
             this.isEnding = true;
           }

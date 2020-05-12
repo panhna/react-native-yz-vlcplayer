@@ -1367,10 +1367,10 @@ export default class VlCPlayerViewByMethod extends Component {
           )}
         </View>
         <View style={styles.centerContainer}>
-          <Text style={styles.centerContainerText}>网络未连接，请检查网络设置</Text>
+          <Text style={styles.centerContainerText}>The network is not connected, please check the network settings</Text>
           <TouchableOpacity style={styles.centerContainerBtn} onPress={this._fetchNetWork} activeOpacity={1}>
             <Icon name={'reload'} size={20} color="#fff" />
-            <Text style={styles.centerContainerBtnText}>刷新重试</Text>
+            <Text style={styles.centerContainerBtnText}>Refresh and try again</Text>
           </TouchableOpacity>
         </View>
       </View>
