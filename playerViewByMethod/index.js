@@ -1920,10 +1920,11 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   backBtn: {
-    height: 37,
+    height: 50,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    marginHorizontal: 10,
   },
   btn: {
     //marginLeft: 10,
@@ -1954,7 +1955,8 @@ const styles = StyleSheet.create({
   bottomView: {
     bottom: 0,
     left: 0,
-    height: 37,
+    // height: 37,
+    height: 50,
     zIndex:999,
     position: 'absolute',
     width: '100%',
