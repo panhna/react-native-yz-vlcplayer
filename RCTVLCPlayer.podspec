@@ -9,10 +9,10 @@ Pod::Spec.new do |s|
   s.license      = package['license']
 
   s.authors      = package['author']
-  s.homepage     = "https://github.com/sophatvathana-slash/react-native-yz-vlcplayer"
+  s.homepage     = "https://github.com/panhna/react-native-yz-vlcplayer"
   s.platform     = :ios, "9.0"
 
-  s.source       = { :git => "https://github.com/sophatvathana-slash/react-native-yz-vlcplayer", :tag => "v#{s.version}" }
+  s.source       = { :git => "https://github.com/panhna/react-native-yz-vlcplayer", :tag => "v#{s.version}" }
 
   s.subspec "RCTVLCPlayer" do |ss|
     ss.source_files  = "ios/**/*.{h,m}"
