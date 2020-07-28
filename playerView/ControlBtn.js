@@ -1,7 +1,7 @@
 /**
  * Created by yuanzhou.xu on 2018/5/16.
  */
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,11 +10,11 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   StatusBar,
-} from "react-native";
-// import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Slider from "react-native-slider";
-import PropTypes from "prop-types";
-import TimeLimt from "./TimeLimit";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Slider from 'react-native-slider';
+import PropTypes from 'prop-types';
+import TimeLimt from './TimeLimit';
 
 export default class ControlBtn extends Component {
   _getTime = (data = 0) => {
@@ -22,21 +22,21 @@ export default class ControlBtn extends Component {
     let diffCourse = data % 3600;
     let minCourse = Math.floor(diffCourse / 60);
     let secondCourse = Math.floor(diffCourse % 60);
-    let courseReal = "";
+    let courseReal = '';
     if (hourCourse) {
       if (hourCourse < 10) {
-        courseReal += "0" + hourCourse + ":";
+        courseReal += '0' + hourCourse + ':';
       } else {
-        courseReal += hourCourse + ":";
+        courseReal += hourCourse + ':';
       }
     }
     if (minCourse < 10) {
-      courseReal += "0" + minCourse + ":";
+      courseReal += '0' + minCourse + ':';
     } else {
-      courseReal += minCourse + ":";
+      courseReal += minCourse + ':';
     }
     if (secondCourse < 10) {
-      courseReal += "0" + secondCourse;
+      courseReal += '0' + secondCourse;
     } else {
       courseReal += secondCourse;
     }
@@ -54,10 +54,10 @@ export default class ControlBtn extends Component {
       onSlidingComplete,
       currentTime,
       totalTime,
-      style,
+      style
     } = this.props;
     return (
-      <View style={[styles.controls, style]}>
+      <View style={[styles.controls,style]}>
         <View style={styles.controlContainer}>
           <TouchableOpacity style={styles.controlContent} activeOpacity={1}>
             <View style={styles.controlContent2}>
@@ -66,32 +66,19 @@ export default class ControlBtn extends Component {
                 onPress={() => {
                   onPausedPress && onPausedPress(!paused);
                 }}
-                style={{
-                  width: 50,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {/* <Icon name={paused ? 'play' : 'pause'} size={30} color="#fff" /> */}
+                style={{ width: 50, alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name={paused ? 'play' : 'pause'} size={30} color="#fff" />
               </TouchableOpacity>
-              {showSlider && totalTime > 0 && (
+              {showSlider && totalTime > 0 &&(
                 <View
                   style={{
                     flex: 1,
-                    alignItems: "center",
-                    flexDirection: "row",
+                    alignItems: 'center',
+                    flexDirection: 'row',
                     //justifyContent: 'space-between',
-                  }}
-                >
-                  <View
-                    style={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: 50,
-                      minWidth: 50,
-                    }}
-                  >
-                    <Text style={{ fontSize: 11, color: "#fff" }}>
+                  }}>
+                  <View style={{justifyContent:'center',alignItems:'center',height:50, minWidth: 50,}}>
+                    <Text style={{fontSize: 11,color: '#fff',}}>
                       {this._getTime(currentTime) || 0}
                     </Text>
                   </View>
@@ -99,27 +86,21 @@ export default class ControlBtn extends Component {
                     <Slider
                       minimumTrackTintColor="#30a935"
                       thumbStyle={styles.thumb}
-                      style={{ width: "100%" }}
+                      style={{ width: '100%' }}
                       value={currentTime}
                       maximumValue={totalTime}
                       step={1}
-                      onValueChange={(value) => {
+                      onValueChange={value => {
                         onValueChange && onValueChange(value);
                       }}
-                      onSlidingComplete={(value) => {
+                      onSlidingComplete={value => {
                         onSlidingComplete && onSlidingComplete(value);
                       }}
                     />
                   </View>
-                  <View
-                    style={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: 50,
-                      minWidth: 50,
-                    }}
-                  >
-                    <Text style={{ fontSize: 11, color: "#fff" }}>
+                  <View style={{justifyContent:'center',alignItems:'center',height:50, minWidth: 50}}>
+                    <Text
+                      style={{fontSize: 11,color: '#fff'}}>
                       {this._getTime(totalTime) || 0}
                     </Text>
                   </View>
@@ -130,13 +111,8 @@ export default class ControlBtn extends Component {
                 onPress={() => {
                   onFullPress && onFullPress(!isFull);
                 }}
-                style={{
-                  width: 50,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {/* <Icon name={isFull ? 'fullscreen-exit' : 'fullscreen'} size={30} color="#fff" /> */}
+                style={{ width: 50, alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name={isFull ? 'fullscreen-exit' : 'fullscreen'} size={30} color="#fff" />
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
@@ -152,79 +128,79 @@ const styles = StyleSheet.create({
     //backgroundColor: '#000',
   },
   controls: {
-    width: "100%",
-    height: 50,
+    width:'100%',
+    height:50,
   },
   rateControl: {
     flex: 0,
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     marginLeft: 10,
     //backgroundColor: 'rgba(0,0,0,0.5)',
     width: 120,
     height: 30,
-    justifyContent: "space-around",
-    alignItems: "center",
+    justifyContent: 'space-around',
+    alignItems: 'center',
     borderRadius: 10,
   },
   controlOption: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 13,
-    color: "#fff",
+    color: '#fff',
     width: 30,
     //lineHeight: 12,
   },
   controlContainer: {
-    flex: 1,
+    flex:1,
     //padding: 5,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   controlContent: {
-    width: "100%",
+    width: '100%',
     height: 50,
     //borderRadius: 10,
-    backgroundColor: "rgba(255,255,255,0.6)",
+    backgroundColor: 'rgba(255,255,255,0.6)',
   },
   controlContent2: {
     flex: 1,
-    flexDirection: "row",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 
   progress: {
     flex: 1,
     borderRadius: 3,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   thumb: {
     width: 6,
     height: 18,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 4,
   },
   loading: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     top: 0,
     zIndex: 0,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   ad: {
-    backgroundColor: "rgba(255,255,255,1)",
+    backgroundColor: 'rgba(255,255,255,1)',
     height: 30,
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
