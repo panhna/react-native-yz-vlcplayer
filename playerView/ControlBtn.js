@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
   StatusBar,
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+// import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Slider from "react-native-slider";
 import PropTypes from "prop-types";
 import TimeLimt from "./TimeLimit";

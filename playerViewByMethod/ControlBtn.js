@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
   StatusBar,
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+// import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Slider from "react-native-slider";
 import PropTypes from "prop-types";
 import TimeLimt from "./TimeLimit";
@@ -83,11 +83,11 @@ export default class ControlBtn extends Component {
                   justifyContent: "center",
                 }}
               >
-                <Icon
+                {/* <Icon
                   name={muted ? "volume-off" : "volume-high"}
                   size={24}
                   color="#fff"
-                />
+                /> */}
               </TouchableOpacity>
               {/* <TouchableOpacity
                   activeOpacity={0.8}
@@ -163,11 +163,11 @@ export default class ControlBtn extends Component {
                 justifyContent: "center",
               }}
             >
-              <Icon
+              {/* <Icon
                 name={isFull ? "fullscreen-exit" : "fullscreen"}
                 size={26}
                 color="#fff"
-              />
+              /> */}
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
