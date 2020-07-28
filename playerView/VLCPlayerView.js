@@ -1,7 +1,7 @@
 /**
  * Created by yuanzhou.xu on 2018/5/14.
  */
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,16 +13,16 @@ import {
   BackHandler,
   Modal,
   Platform,
-} from 'react-native';
-import VLCPlayer from '../VLCPlayer';
-import PropTypes from 'prop-types';
-import TimeLimt from './TimeLimit';
-import ControlBtn from './ControlBtn';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { getStatusBarHeight } from './SizeController';
+} from "react-native";
+import VLCPlayer from "../VLCPlayer";
+import PropTypes from "prop-types";
+import TimeLimt from "./TimeLimit";
+import ControlBtn from "./ControlBtn";
+// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { getStatusBarHeight } from "./SizeController";
 const statusBarHeight = getStatusBarHeight();
-let deviceHeight = Dimensions.get('window').height;
-let deviceWidth = Dimensions.get('window').width;
+let deviceHeight = Dimensions.get("window").height;
+let deviceWidth = Dimensions.get("window").width;
 export default class VLCPlayerView extends Component {
   static propTypes = {
     uri: PropTypes.string,
@@ -65,18 +65,16 @@ export default class VLCPlayerView extends Component {
   }
 
   componentWillUnmount() {
-    if(this.bufferInterval){
+    if (this.bufferInterval) {
       clearInterval(this.bufferInterval);
       this.bufferInterval = null;
     }
-
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.uri !== prevProps.uri) {
       console.log("componentDidUpdate");
       this.changeUrl = true;
-
     }
   }
 
@@ -101,16 +99,16 @@ export default class VLCPlayerView extends Component {
     let source = {};
     if (uri) {
       if (uri.split) {
-        source = { uri: this.props.uri};
+        source = { uri: this.props.uri };
       } else {
         source = uri;
       }
     }
-    if (Platform.OS === 'ios') {
-      if ((loadingSuccess && isAd) || (isAd && type === 'swf')) {
+    if (Platform.OS === "ios") {
+      if ((loadingSuccess && isAd) || (isAd && type === "swf")) {
         showAd = true;
       }
-      if (isLoading && type !== 'swf') {
+      if (isLoading && type !== "swf") {
         realShowLoding = true;
       }
     } else {
@@ -137,9 +135,10 @@ export default class VLCPlayerView extends Component {
               this.setState({ showControls: !this.state.showControls });
             }
           }
-        }}>
+        }}
+      >
         <VLCPlayer
-          ref={ref => (this.vlcPlayer = ref)}
+          ref={(ref) => (this.vlcPlayer = ref)}
           paused={this.state.paused}
           //seek={this.state.seek}
           style={[styles.video]}
@@ -157,25 +156,27 @@ export default class VLCPlayerView extends Component {
           onOpen={this._onOpen}
           onLoadStart={this._onLoadStart}
         />
-        {realShowLoding &&
-        !isError && (
+        {realShowLoding && !isError && (
           <View style={styles.loading}>
-            <ActivityIndicator size={'large'} animating={true} color="#fff" />
+            <ActivityIndicator size={"large"} animating={true} color="#fff" />
           </View>
         )}
         {isError && (
-          <View style={[styles.loading,{backgroundColor:'#000'}]}>
-            <Text style={{ color: 'red' }}>Video playback error, please reload</Text>
+          <View style={[styles.loading, { backgroundColor: "#000" }]}>
+            <Text style={{ color: "red" }}>
+              Video playback error, please reload
+            </Text>
             <TouchableOpacity
               activeOpacity={1}
               onPress={this._reload}
               style={{
                 width: 100,
-                alignItems: 'center',
-                justifyContent: 'center',
+                alignItems: "center",
+                justifyContent: "center",
                 marginTop: 10,
-              }}>
-              <Icon name={'reload'} size={45} color="#fff" />
+              }}
+            >
+              {/* <Icon name={'reload'} size={45} color="#fff" /> */}
             </TouchableOpacity>
           </View>
         )}
@@ -191,14 +192,16 @@ export default class VLCPlayerView extends Component {
                   }
                 }}
                 style={styles.btn}
-                activeOpacity={0.8}>
-                <Icon name={'chevron-left'} size={30} color="#fff" />
+                activeOpacity={0.8}
+              >
+                {/* <Icon name={'chevron-left'} size={30} color="#fff" /> */}
               </TouchableOpacity>
             )}
-            <View style={{ justifyContent: 'center', flex: 1, marginRight: 10 }}>
-              {showTitle &&
-              showControls && (
-                <Text style={{ color: '#fff', fontSize: 16 }} numberOfLines={1}>
+            <View
+              style={{ justifyContent: "center", flex: 1, marginRight: 10 }}
+            >
+              {showTitle && showControls && (
+                <Text style={{ color: "#fff", fontSize: 16 }} numberOfLines={1}>
                   {title}
                 </Text>
               )}
@@ -230,16 +233,18 @@ export default class VLCPlayerView extends Component {
               totalTime={this.state.totalTime}
               onPausedPress={this._play}
               onFullPress={this._toFullScreen}
-              onValueChange={value => {
+              onValueChange={(value) => {
                 this.changingSlider = true;
                 this.setState({
                   currentTime: value,
                 });
               }}
-              onSlidingComplete={value => {
+              onSlidingComplete={(value) => {
                 this.changingSlider = false;
-                if (Platform.OS === 'ios') {
-                  this.vlcPlayer.seek(Number((value / this.state.totalTime).toFixed(17)));
+                if (Platform.OS === "ios") {
+                  this.vlcPlayer.seek(
+                    Number((value / this.state.totalTime).toFixed(17))
+                  );
                 } else {
                   this.vlcPlayer.seek(value);
                 }
@@ -260,7 +265,7 @@ export default class VLCPlayerView extends Component {
     if (this.state.paused) {
       this.setState({ paused: false });
     }
-    console.log('onPlaying');
+    console.log("onPlaying");
   }
 
   /**
@@ -270,10 +275,10 @@ export default class VLCPlayerView extends Component {
   onPaused(event) {
     if (!this.state.paused) {
       this.setState({ paused: true, showControls: true });
-    }else{
+    } else {
       this.setState({ showControls: true });
     }
-    console.log('onPaused');
+    console.log("onPaused");
   }
 
   /**
@@ -289,31 +294,34 @@ export default class VLCPlayerView extends Component {
     if (!this.bufferInterval) {
       this.bufferInterval = setInterval(this.bufferIntervalFunction, 250);
     }
-    console.log('onBuffering');
+    console.log("onBuffering");
     console.log(event);
   }
 
   bufferIntervalFunction = () => {
-    console.log('bufferIntervalFunction');
+    console.log("bufferIntervalFunction");
     let currentTime = new Date().getTime();
     let diffTime = currentTime - this.bufferTime;
     if (diffTime > 1000) {
       clearInterval(this.bufferInterval);
-      this.setState({
-        paused: true,
-      },()=>{
-        this.setState({
-          paused: false,
-          isLoading: false,
-        });
-      });
+      this.setState(
+        {
+          paused: true,
+        },
+        () => {
+          this.setState({
+            paused: false,
+            isLoading: false,
+          });
+        }
+      );
       this.bufferInterval = null;
-      console.log('remove  bufferIntervalFunction');
+      console.log("remove  bufferIntervalFunction");
     }
   };
 
-  _onError = e => {
-    console.log('_onError');
+  _onError = (e) => {
+    console.log("_onError");
     console.log(e);
     this.reloadSuccess = false;
     this.setState({
@@ -321,50 +329,56 @@ export default class VLCPlayerView extends Component {
     });
   };
 
-  _onOpen = e => {
-    console.log('onOpen');
+  _onOpen = (e) => {
+    console.log("onOpen");
     console.log(e);
   };
 
-  _onLoadStart = e => {
-    console.log('_onLoadStart');
+  _onLoadStart = (e) => {
+    console.log("_onLoadStart");
     console.log(e);
     let { isError } = this.state;
-    if(isError){
+    if (isError) {
       this.reloadSuccess = true;
       let { currentTime, totalTime } = this.state;
-      if (Platform.OS === 'ios') {
+      if (Platform.OS === "ios") {
         this.vlcPlayer.seek(Number((currentTime / totalTime).toFixed(17)));
       } else {
         this.vlcPlayer.seek(currentTime);
       }
-      this.setState({
-        paused: true,
-        isError: false,
-      },()=>{
-        this.setState({
-          paused: false,
-        });
-      })
-    }else{
+      this.setState(
+        {
+          paused: true,
+          isError: false,
+        },
+        () => {
+          this.setState({
+            paused: false,
+          });
+        }
+      );
+    } else {
       this.vlcPlayer.seek(0);
-      this.setState({
-        isLoading: true,
-        isError: false,
-        loadingSuccess: false,
-        paused: true,
-        currentTime: 0.0,
-        totalTime: 0.0,
-      },()=>{
-        this.setState({
-          paused: false,
-        });
-      })
+      this.setState(
+        {
+          isLoading: true,
+          isError: false,
+          loadingSuccess: false,
+          paused: true,
+          currentTime: 0.0,
+          totalTime: 0.0,
+        },
+        () => {
+          this.setState({
+            paused: false,
+          });
+        }
+      );
     }
   };
 
   _reload = () => {
-    if(!this.reloadSuccess){
+    if (!this.reloadSuccess) {
       this.vlcPlayer.resume && this.vlcPlayer.resume(false);
     }
   };
@@ -407,12 +421,12 @@ export default class VLCPlayerView extends Component {
    * @param event
    */
   onEnded(event) {
-    console.log('onEnded ---------->')
-    console.log(event)
-    console.log('<---------- onEnded ')
+    console.log("onEnded ---------->");
+    console.log(event);
+    console.log("<---------- onEnded ");
     let { currentTime, totalTime } = this.state;
     let { onEnd, autoplay, isAd } = this.props;
-    if (((currentTime+5) >= totalTime && totalTime > 0) || isAd) {
+    if ((currentTime + 5 >= totalTime && totalTime > 0) || isAd) {
       this.setState(
         {
           paused: true,
@@ -423,13 +437,13 @@ export default class VLCPlayerView extends Component {
             onEnd && onEnd();
             if (!isAd) {
               this.vlcPlayer.resume && this.vlcPlayer.resume(false);
-              console.log(this.props.uri + ':   onEnded');
+              console.log(this.props.uri + ":   onEnded");
             } else {
-              console.log('Opening: ' + this.props.uri + ':   onEnded');
+              console.log("Opening: " + this.props.uri + ":   onEnded");
             }
             this.isEnding = true;
           }
-        },
+        }
       );
     } else {
       /* console.log('onEnded   error:'+this.props.uri);
@@ -464,7 +478,7 @@ export default class VLCPlayerView extends Component {
    * @private
    */
   _play = () => {
-    this.setState({paused: !this.state.paused});
+    this.setState({ paused: !this.state.paused });
   };
 }
 
@@ -476,59 +490,59 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   video: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
   },
   loading: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     top: 0,
     zIndex: 0,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   ad: {
-    backgroundColor: 'rgba(255,255,255,1)',
+    backgroundColor: "rgba(255,255,255,1)",
     height: 30,
     marginRight: 10,
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   topView: {
-    top: Platform.OS === 'ios' ? statusBarHeight : 0,
+    top: Platform.OS === "ios" ? statusBarHeight : 0,
     left: 0,
     height: 45,
-    position: 'absolute',
-    width: '100%',
+    position: "absolute",
+    width: "100%",
     //backgroundColor: 'red'
   },
   bottomView: {
     bottom: 0,
     left: 0,
     height: 50,
-    position: 'absolute',
-    width: '100%',
-    backgroundColor: 'rgba(0,0,0,0)',
+    position: "absolute",
+    width: "100%",
+    backgroundColor: "rgba(0,0,0,0)",
   },
   backBtn: {
     height: 45,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
   },
   btn: {
     marginLeft: 10,
     marginRight: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.3)",
     height: 40,
     borderRadius: 20,
     width: 40,
