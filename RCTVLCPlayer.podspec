@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     s.static_framework = true
   end
   
-  s.dependency 'MobileVLCKit', '3.3.11'
+  s.dependency 'MobileVLCKit', '3.3.1'
   s.dependency 'React'
   s.default_subspec = "RCTVLCPlayer"
 end
